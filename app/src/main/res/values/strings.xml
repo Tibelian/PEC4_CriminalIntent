@@ -21,4 +21,8 @@
     <string name="crime_report_subject">CriminalIntent Crime Report</string>
     <string name="send_report">Send Crime report via</string>
 
+    <!-- MEJORA 2 - texto de los botones de navegación -->
+    <string name="first_crime_button">|&lt; Jump to first</string>
+    <string name="last_crime_button">Jump to last &gt;|</string>
+
 </resources>

@@ -3,6 +3,8 @@ package com.jcarlosprofesor.criminalintent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,10 @@ implements CrimeFragment.Callbacks{
     private static final String EXTRA_CRIME_ID = "crime_id";
     private ViewPager2 mViewPager;
     private List<Crime> mCrimes;
+
+    // MEJORA 2 --> botones que usaremos para navegar por el viewPager
+    private Button mFirst;
+    private Button mLast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +63,38 @@ implements CrimeFragment.Callbacks{
                 mViewPager.setCurrentItem(i);
             }
         }
+
+
+        // MEJORA 2 --> se le agrega la acción a los botones
+        // para poder saltar al primer o último elemento del viewPager
+        mFirst = findViewById(R.id.first_button);
+        mLast = findViewById(R.id.last_button);
+        mFirst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(0);
+            }
+        });
+        mLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(mCrimes.size() - 1);
+            }
+        });
+        // cada vez que la el elemento cambia se ejecuta un callback
+        mViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                // dentro de la función se verifica el índice
+                // para saber si hay que deshabilitar
+                // alguno de los botones
+                mFirst.setClickable(position != 0);
+                mLast.setClickable(position != (mCrimes.size() - 1));
+                super.onPageSelected(position);
+            }
+        });
+
+
     }
     public static Intent newIntent(Context packageContext, UUID crimeId){
         Intent intent = new Intent(packageContext,CrimePagerActivity.class);
