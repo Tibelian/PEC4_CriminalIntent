@@ -24,8 +24,6 @@
     <!-- MEJORA 2 - texto de los botones de navegación -->
     <string name="first_crime_button">|&lt; Jump to first</string>
     <string name="last_crime_button">Jump to last &gt;|</string>
-    <string name="time_picker_title">Select crime\'s time</string>
-    <string name="crime_time">Crime\'s time</string>
 
     <!-- MEJORA 3 - texto del selector de hora -->
     <string name="time_picker_title">Select crime\'s time</string>
