@@ -69,6 +69,12 @@ public class CrimeFragment extends Fragment {
     //Constante para la peticion de tomar una foto
     private static final int REQUEST_PHOTO = 2;
 
+    // MEJORA 3 --> botón para mostrar y editar el tiempo
+    // y las constante para etiquetar el TimePickerFragment y su respuesta
+    private Button mTimeButton;
+    private static final String DIALOG_TIME = "DialogTime";
+    private static final int REQUEST_TIME = 3;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -210,6 +216,20 @@ public class CrimeFragment extends Fragment {
                 PackageManager.MATCH_DEFAULT_ONLY) == null){
             mSuspectButton.setEnabled(false);
         }*/
+
+
+        // MEJORA 3 --> se le agrega la acción al botón del tiempo
+        // para que que clicar se muestre el selector de la hora
+        mTimeButton = view.findViewById(R.id.crime_time);
+        mTimeButton.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            TimePickerFragment dialog = TimePickerFragment.newInstance(mCrime.getDate());
+            dialog.setTargetFragment(CrimeFragment.this, REQUEST_TIME);
+            dialog.show(fragmentManager, DIALOG_TIME);
+        });
+        modifyCrimeTime(mCrime.getDate());
+
+
         return view;
     }
     //Sobreescribimos el método onActivityResult para recuperar el extra, fijamos la fecha en el objeto Crime
@@ -262,6 +282,25 @@ public class CrimeFragment extends Fragment {
             updateCrime();
             updatePhotoView();
         }
+        // MEJORA 3 --> se procesa la fecha obtenida
+        else if (requestCode == REQUEST_TIME)
+        {
+            // accedemos al tiempo
+            Date time = (Date) data.getSerializableExtra(TimePickerFragment.EXTRA_TIME);
+
+            // lo establecemos sin modificar el día, mes y año
+            mCrime.getDate().setTime(time.getTime());
+
+            // y se cambia el texto del botón
+            modifyCrimeTime(time);
+        }
+    }
+
+    // MEJORA 3 --> método para cambiar el tiempo que hay en botón de la hora y minuto
+    private void modifyCrimeTime(Date time) {
+        DateFormat df = new DateFormat();
+        String crimeTime = getActivity().getResources().getString(R.string.crime_time);
+        mTimeButton.setText(crimeTime + ": " + df.format("HH:mm", time));
     }
 
     //Sobreescribimos el metodo onPause para asegurarnos que las instancias
