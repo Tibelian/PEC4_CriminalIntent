@@ -3,6 +3,7 @@ package com.jcarlosprofesor.criminalintent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -81,12 +82,15 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime){
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            mDateTextView.setText(formatDate(mCrime.getDate()));
             mSolvedImageView.setVisibility(crime.isSolved()?View.VISIBLE:View.GONE);
         }
+
+        // MEJORA 1 --> se le cambia el formato a la fecha en el recycler view
         public String formatDate(Date dateCrime){
-            
-          return null;
+            DateFormat df = new DateFormat();
+            String inFormat = "EEEE, MMM dd, yyyy";
+            return df.format(inFormat, dateCrime).toString();
         }
 
         @Override
