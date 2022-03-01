@@ -78,6 +78,9 @@ public class CrimeFragment extends Fragment {
     // MEJORA 4 --> botón para eliminar el crimen actual
     private Button mDeleteButton;
 
+    // MEJORA 8 --> sospechoso editable
+    private EditText mSuspectField;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -210,8 +213,22 @@ public class CrimeFragment extends Fragment {
                 startActivityForResult(pickContact,REQUEST_CONTACT);
             }
         });
+
+        // MEJORA 8 --> habilita la edición del sospechoso agregando un campo editable
+        mSuspectField = view.findViewById(R.id.crime_suspect_text);
+        mSuspectField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mCrime.setSuspect(s.toString());
+                updateCrime();
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
         if(mCrime.getSuspect()!=null){
-            mSuspectButton.setText(mCrime.getSuspect());
+            mSuspectField.setText(mCrime.getSuspect());
         }
         //Comprobamos que las activity responden a los intent
        /* PackageManager packageManager = getActivity().getPackageManager();
@@ -282,7 +299,8 @@ public class CrimeFragment extends Fragment {
                 String suspect = c.getString(0);
                 mCrime.setSuspect(suspect);
                 updateCrime();
-                mSuspectButton.setText(suspect);
+                // MEJORA 8 --> actualiza el campo editable del sospechoso
+                mSuspectField.setText(suspect);
             }finally {
                 c.close();
             }
