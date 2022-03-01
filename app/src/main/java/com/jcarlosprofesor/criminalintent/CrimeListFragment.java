@@ -214,7 +214,10 @@ public class CrimeListFragment extends Fragment {
     private void updateSubtitle(){
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         int crimeCount = crimeLab.getCrimes().size();
-        String subtitle = getString(R.string.subtitle_format,crimeCount);
+
+        // MEJORA 5 --> utiliza un texto diferente en caso de que el contador es distinto que 1
+        String subtitle = getResources()
+                .getQuantityString(R.plurals.subtitle_plural, crimeCount, crimeCount);
 
         if(!mSubtitleVisible){
             subtitle=null;
