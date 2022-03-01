@@ -28,7 +28,7 @@
     <string name="time_picker_title">Select crime\'s time</string>
     <string name="crime_time">Crime\'s time</string>
 
-    <!-- MEJORA 4 - texto del botón de eliminar crimen seleccionado -->
+    <!-- MEJORA 4 y 7 - texto del botón de eliminar crimen seleccionado -->
     <string name="crime_delete">Delete crime</string>
 
     <!-- MEJORA 5 - subtitulo en singular o plural -->

@@ -3,6 +3,9 @@ package com.jcarlosprofesor.criminalintent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -106,4 +109,29 @@ implements CrimeFragment.Callbacks{
     public void onCrimeUpdated(Crime crime) {
 
     }
+
+
+    // MEJORA 7 --> agregar opción 'eliminar crimen' en el menú
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.fragment_crime, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // MEJORA 7 --> elimina el crimen seleccionado y se sale de la activity
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.delete_crime:
+                Crime xCrime = mCrimes.get(mViewPager.getCurrentItem());
+                CrimeLab.get(this).deleteCrime(xCrime.getId());
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
 }
