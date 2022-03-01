@@ -129,4 +129,13 @@ public class CrimeLab {
         return new File(filesDir,crime.getPhotoFilename());
     }
 
+
+    // MEJORA 4 --> elimina el crimen de la base de datos teniendo su ID
+    public boolean deleteCrime(UUID id) {
+        String whereClause = CrimeTable.Cols.UUID + " = ? ";
+        String[] whereArgs = { id.toString() };
+        int n = mDatabase.delete(CrimeTable.NAME, whereClause, whereArgs);
+        return ( n != 0 );
+    }
+
 }

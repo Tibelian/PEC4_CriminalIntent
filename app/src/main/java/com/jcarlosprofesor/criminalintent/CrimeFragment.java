@@ -75,6 +75,9 @@ public class CrimeFragment extends Fragment {
     private static final String DIALOG_TIME = "DialogTime";
     private static final int REQUEST_TIME = 3;
 
+    // MEJORA 4 --> botón para eliminar el crimen actual
+    private Button mDeleteButton;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -228,6 +231,17 @@ public class CrimeFragment extends Fragment {
             dialog.show(fragmentManager, DIALOG_TIME);
         });
         modifyCrimeTime(mCrime.getDate());
+
+
+        // MEJORA 4 --> el botón al accionar elimina el crimen seleccionado
+        mDeleteButton = view.findViewById(R.id.crime_delete);
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CrimeLab.get(getActivity()).deleteCrime(mCrime.getId());
+                getActivity().finish();
+            }
+        });
 
 
         return view;
