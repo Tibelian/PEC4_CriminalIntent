@@ -37,4 +37,8 @@
         <item quantity="other">%1$d crimes</item>
     </plurals>
 
+    <!-- MEJORA 6 - no se han encontrado crímenes -->
+    <string name="no_crimes">There are no crimes</string>
+    <string name="add_crime">Add crime</string>
+
 </resources>

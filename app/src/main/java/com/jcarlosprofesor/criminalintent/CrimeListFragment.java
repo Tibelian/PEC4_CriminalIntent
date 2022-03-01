@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,11 @@ import java.util.Date;
 import java.util.List;
 
 public class CrimeListFragment extends Fragment {
+
+    // MEJORA 6 --> contenedor con el texto "there are no crimes"
+    // y el botón para agregar crímenes
+    private View mNoCrimes;
+    private Button mAddCrime;
 
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
@@ -152,7 +158,28 @@ public class CrimeListFragment extends Fragment {
         mAdapter = new CrimeAdapter(crimes);
         mCrimeRecyclerView.setAdapter(mAdapter);
 
+        // MEJORA 6 --> elementos que utilizaremos para informar
+        // al usuario en caso de que no se encuentren crímenes
+        mNoCrimes = view.findViewById(R.id.no_crimes_container);
+        mAddCrime = view.findViewById(R.id.add_crime_button);
+
         return view;
+    }
+
+    // MEJORA 6 --> si no hay crímenes entonces muestra un mensaje
+    // y un botón para agregar un nuevo crimen
+    private void checkNumCrimes(List<Crime> crimes) {
+        if (crimes.size() > 0) return;
+        mNoCrimes.setVisibility(View.VISIBLE);
+        mAddCrime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Crime crime = new Crime();
+                CrimeLab.get(getActivity()).addCrime(crime);
+                updateUI();
+                mCallbacks.onCrimeSelected(crime);
+            }
+        });
     }
 
     public void onResume(){
@@ -163,6 +190,11 @@ public class CrimeListFragment extends Fragment {
     public void updateUI(){
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
+
+        // MEJORA 6 --> cada vez que se actualiza la interfaz hay que comprobar
+        // si tenemos o no crímenes para mostrar o no un mensaje informativo
+        checkNumCrimes(crimes);
+
         if(mAdapter == null){
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
