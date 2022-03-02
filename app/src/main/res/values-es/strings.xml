@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MEJORA 9 - traducción idioma español -->
+<resources>
+    <string name="app_name">CriminalIntent</string>
+    <string name="crime_title_hint">Introducir título del crimen</string>
+    <string name="crime_title_label">Título</string>
+    <string name="crime_details_label">Detalles</string>
+    <string name="date_picker_title">Fecha del crimen</string>
+    <string name="crime_solved_label">Resuelto</string>
+    <string name="new_crime">Nuevo crimen</string>
+    <string name="show_subtitle">Mostrar subtítulo</string>
+    <string name="hide_subtitle">Ocultar subtítulo</string>
+    <string name="crime_suspect_text">Elegir sospechoso</string>
+    <string name="crime_report_text">Enviar informe del crimen</string>
+    <string name="crime_report">"%1$s!         El crimen ha sido descubierto %2$s. %3$s, y %4$s     "</string>
+    <string name="crime_report_solved">El caso está resuelto</string>
+    <string name="crime_report_unsolved">El caso no está resuelto</string>
+    <string name="crime_report_no_suspect">no hay sospechoso</string>
+    <string name="crime_report_suspect">el sospechoso es %s.</string>
+    <string name="crime_report_subject">CriminalIntent Informe del crimen</string>
+    <string name="send_report">Enviar informe del crimen vía</string>
+    <string name="first_crime_button">|&lt; Ir al primero</string>
+    <string name="last_crime_button">Ir al último &gt;|</string>
+    <string name="time_picker_title">Seleccionar hora del crimen</string>
+    <string name="crime_time">Hora del crimen</string>
+    <string name="crime_delete">Eliminar crimen</string>
+    <string name="no_crimes">No hay crimenes</string>
+    <string name="add_crime">Agregar crimen</string>
+    <plurals name="subtitle_plural">
+        <item quantity="one">%1$d crimen</item>
+        <item quantity="other">%1$d crimenes</item>
+    </plurals>
+</resources>

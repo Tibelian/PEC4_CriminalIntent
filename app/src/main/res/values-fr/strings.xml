@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MEJORA 9 - traducción idioma francés -->
+<resources>
+    <string name="app_name">CriminalIntent</string>
+    <string name="crime_title_hint">Entrez un titre pour le crime</string>
+    <string name="crime_title_label">Titre</string>
+    <string name="crime_details_label">Des détails</string>
+    <string name="date_picker_title">"Date du crime "</string>
+    <string name="crime_solved_label">Résolu</string>
+    <string name="new_crime">"Nouveau crime "</string>
+    <string name="show_subtitle">"Afficher le sous-titre "</string>
+    <string name="hide_subtitle">"Masquer le sous-titre "</string>
+    <string name="crime_suspect_text">"Choisissez Suspect "</string>
+    <string name="crime_report_text">"Envoyer un rapport de crime "</string>
+    <string name="crime_report">"%1$s!         Le crime a été découvert sur %2$s. %3$s et %4$s "</string>
+    <string name="crime_report_solved">"L'affaire est résolue "</string>
+    <string name="crime_report_unsolved">"L'affaire n'est pas résolue "</string>
+    <string name="crime_report_no_suspect">"il n'y a pas de suspect "</string>
+    <string name="crime_report_suspect">"le suspect est %s. "</string>
+    <string name="crime_report_subject">CriminalIntent Rapport de crime</string>
+    <string name="send_report">Envoyer le rapport de crime via</string>
+    <string name="first_crime_button">"|&lt; Sauter au premier "</string>
+    <string name="last_crime_button">"Sauter au dernier &gt;| "</string>
+    <string name="time_picker_title">"Sélectionnez l'heure du crime "</string>
+    <string name="crime_time">"Le temps du crime "</string>
+    <string name="crime_delete">"Supprimer le crime "</string>
+    <string name="no_crimes">"Il n'y a pas de crimes "</string>
+    <string name="add_crime">"Ajouter un crime "</string>
+    <plurals name="subtitle_plural">
+        <item quantity="one">%1$d crime</item>
+        <item quantity="other">%1$d crimes</item>
+        <item quantity="many">%1$d crimes</item>
+    </plurals>
+</resources>
